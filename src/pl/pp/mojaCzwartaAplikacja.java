@@ -28,72 +28,73 @@ public class mojaCzwartaAplikacja {
     }
 }
  */
+
 package pl.pp;
 import java.util.Scanner;
+
+
 
 public class mojaCzwartaAplikacja {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean continueCalculation = true;
 
-        while (true) {
+        while (continueCalculation) {
             System.out.println("Wybierz operację:");
             System.out.println("1. Dodawanie");
             System.out.println("2. Odejmowanie");
             System.out.println("3. Mnożenie");
             System.out.println("4. Dzielenie");
             System.out.println("5. Wyjście");
-            System.out.print("Wybierz opcję (1-5): ");
+            System.out.print("Podaj numer operacji: ");
 
-            int wybor = 0;
-            while (true) {
-                try {
-                    wybor = Integer.parseInt(scanner.nextLine());
-                    if (wybor >= 1 && wybor <= 5) {
-                        break;
-                    } else {
-                        System.out.println("Nieprawidłowy wybór. Wybierz liczbę od 1 do 5.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Nieprawidłowy wybór. Wybierz liczbę od 1 do 5.");
-                }
+            int choice = 0;
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Nieprawidłowy wybór. Wprowadź numer od 1 do 5.");
+                continue;
             }
 
-            if (wybor == 5) {
-                System.out.println("Do widzenia!");
+            if (choice < 1 || choice > 5) {
+                System.out.println("Nieprawidłowy wybór. Wprowadź numer od 1 do 5.");
+                continue;
+            }
+
+            if (choice == 5) {
+                System.out.println("Dziękujemy. Do widzenia!");
                 break;
             }
 
-            double liczba1, liczba2;
+            double num1, num2;
             System.out.print("Podaj pierwszą liczbę: ");
-            liczba1 = Double.parseDouble(scanner.nextLine());
+            num1 = Double.parseDouble(scanner.nextLine());
             System.out.print("Podaj drugą liczbę: ");
-            liczba2 = Double.parseDouble(scanner.nextLine());
+            num2 = Double.parseDouble(scanner.nextLine());
 
-            double wynik = 0;
-            switch (wybor) {
+            switch (choice) {
                 case 1:
-                    wynik = liczba1 + liczba2;
-                    System.out.println("Wynik dodawania: " + wynik);
+                    System.out.println("Wynik dodawania: " + (num1 + num2));
                     break;
                 case 2:
-                    wynik = liczba1 - liczba2;
-                    System.out.println("Wynik odejmowania: " + wynik);
+                    System.out.println("Wynik odejmowania: " + (num1 - num2));
                     break;
                 case 3:
-                    wynik = liczba1 * liczba2;
-                    System.out.println("Wynik mnożenia: " + wynik);
+                    System.out.println("Wynik mnożenia: " + (num1 * num2));
                     break;
                 case 4:
-                    if (liczba2 != 0) {
-                        wynik = liczba1 / liczba2;
-                        System.out.println("Wynik dzielenia: " + wynik);
+                    if (num2 == 0) {
+                        System.out.println("Nie można dzielić przez zero!");
                     } else {
-                        System.out.println("Nie można dzielić przez zero.");
+                        System.out.println("Wynik dzielenia: " + (num1 / num2));
                     }
+                    break;
+                default:
+                    System.out.println("Nieprawidłowy wybór.");
                     break;
             }
         }
-
         scanner.close();
     }
 }
+
